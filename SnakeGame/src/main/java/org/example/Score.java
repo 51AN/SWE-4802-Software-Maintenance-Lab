@@ -7,6 +7,10 @@ public class Score {
         applesEaten++;
     }
 
+    public void incrementByVal(int val) {
+        applesEaten += val;
+    }
+
     public int getScore() {
         return applesEaten;
     }
