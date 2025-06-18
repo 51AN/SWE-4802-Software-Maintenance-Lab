@@ -21,6 +21,7 @@ public class Board extends JPanel implements java.awt.event.ActionListener {
     private final Image obstacleImg = GameImages.loadImage("/obstacle.png");
 
     private final Apple apple = new Apple();
+    private final PowerUp powerUp = new PowerUp();
     private Direction direction = Direction.RIGHT;
     protected boolean directionChanged = false;
 
@@ -73,6 +74,15 @@ public class Board extends JPanel implements java.awt.event.ActionListener {
             snake.add(new SnakeSegment(0, 0)); // dummy segment
             apple.locateApple(snake, obstacleManager.getObstacles());
             score.increment();
+        }
+    }
+
+    private void checkPowerUp(){
+        SnakeSegment head = snake.get(0);
+        if (head.x == powerUp.getX() && head.y == powerUp.getY()) {
+            snake.add(new SnakeSegment(0, 0)); // dummy segment
+            powerUp.locatePowerUp(snake, obstacleManager.getObstacles());
+            score.incrementByVal(5);
         }
     }
 
